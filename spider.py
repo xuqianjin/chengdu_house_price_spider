@@ -15,7 +15,9 @@ class Client(Cmd):
     prompt = '输入项目编号获取详情>'
 
     def preloop(self):
-        shutil.rmtree(pdf_file)  # 清空目录避免影响
+        isExists = os.path.exists(pdf_file)
+        if isExists:
+            shutil.rmtree(pdf_file)  # 清空目录避免影响
         print('正在获取最近项目...')
         url = Url + '/Infor/type/typeid/36.html'
         res = getHtml(url)
